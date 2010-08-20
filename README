@@ -1,0 +1,9 @@
+These are my own solutions to the excercises in the textbook
+"Algorithms in C" by Robert Sedgewick.  Every effort was made to make
+sure these programs run Memcheck-clean using Valgrind.
+
+If you find any errors, or a better way of doing things, please
+contact me.
+
+James Kastrantas
+jgk16@msstate.edu
