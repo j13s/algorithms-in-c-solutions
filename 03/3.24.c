@@ -30,8 +30,7 @@ int main() {
     
     /* Initialize the circular linked-list. */    
     link first_link   = circ_make_nodes(num_links);
-    link current_link = first_link,
-         next_link;
+    link current_link = first_link;
 
     /* Make sure the linked-list is in order having each node store a value
        higher than the previous one.  This will be checked by comparing the
