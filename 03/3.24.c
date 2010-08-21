@@ -30,17 +30,18 @@ int main() {
     const int num_links = 100000;
     
     /* Initialize the circular linked-list. */    
-    link first_link   = create_node(0);
+    link first_link   = circ_make_nodes(num_links);
     link current_link = first_link,
          next_link;
-    
-    /* One node has already been allocated, so start at 1. */
-    for (int i = 1; i < num_links; i++) {
-        current_link = insert_after(current_link, create_node(i));
-    }
-    /* Make the linked-list circular. */
-    current_link->next = first_link;
 
+    /* Make sure the linked-list is in order having each node store a value
+       higher than the previous one.  This will be checked by comparing the
+       value stored in the node with the number of counted nodes. */
+    for (int i = 0; i < num_links; i++) {
+        current_link->item.num = i;
+        current_link = current_link->next;
+    }
+    
     /* Count the number of nodes in a circular linked-list. */
     int num_nodes = 0;
     current_link = first_link;
@@ -48,6 +49,7 @@ int main() {
         if (num_nodes != current_link->item.num) {
             printf(
                 "Node %p has the wrong data.  Expected %d but got %d\n",
+                current_link,
                 num_nodes,
                 current_link->item.num
             );

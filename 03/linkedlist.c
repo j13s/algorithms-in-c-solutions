@@ -18,12 +18,8 @@
 #include <stdlib.h>
 
 link
-create_node(int num) {
-    link l = (link)malloc(sizeof(struct node));
-    
-    l->item.num = num;
-     
-    return l;
+create_node() {
+    return (link)malloc(sizeof(struct node));
 }
 
 link
@@ -34,6 +30,24 @@ insert_after(link beginning, link end) {
     end->next = middle;
     
     return end;
+}
+
+link
+circ_make_nodes(int num_links) {
+    /* Initialize the circular linked-list. */    
+    link first_link   = create_node();
+    link current_link = first_link,
+         next_link;
+    
+    /* One node has already been allocated, so start at 1. */
+    for (int i = 1; i < num_links; i++) {
+        current_link = insert_after(current_link, create_node());
+    }
+    
+    /* Make the linked-list circular. */
+    current_link->next = first_link;
+    
+    return first_link;
 }
 
 void
