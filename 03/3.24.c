@@ -30,37 +30,36 @@ int main() {
     const int num_links = 100000;
     
     /* Initialize the circular linked-list. */    
-    link first_link   = (link)malloc(sizeof(struct node)),
-         current_link = first_link,
+    link first_link   = create_node(0);
+    link current_link = first_link,
          next_link;
     
     /* One node has already been allocated, so start at 1. */
     for (int i = 1; i < num_links; i++) {
-        next_link = (link)malloc(sizeof(struct node));
-        
-        current_link->next = next_link;
-        current_link       = next_link;
+        current_link = insert_after(current_link, create_node(i));
     }
     /* Make the linked-list circular. */
-    next_link->next = first_link;
+    current_link->next = first_link;
 
     /* Count the number of nodes in a circular linked-list. */
-    first_link    = current_link;
     int num_nodes = 0;
+    current_link = first_link;
     do {
+        if (num_nodes != current_link->item.num) {
+            printf(
+                "Node %p has the wrong data.  Expected %d but got %d\n",
+                num_nodes,
+                current_link->item.num
+            );
+        }
+        
         current_link = current_link->next;
         num_nodes++;
     } while (current_link != first_link);
 
 
-
     /* Free the linked-list. */
-    first_link = current_link;
-    do {
-        next_link = current_link->next;        
-        free(current_link);
-        current_link = next_link;
-    } while (current_link != first_link);
+    circ_free_nodes(current_link);
         
         
     printf("%d nodes were created.\n", num_nodes);

@@ -29,4 +29,8 @@ struct node {
     link next;
 };
 
+link create_node(int);
+link insert_after(link, link);
+void circ_free_nodes(link);
+
 #endif  /* LINKEDLIST_H */
