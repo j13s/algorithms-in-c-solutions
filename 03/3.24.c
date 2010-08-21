@@ -45,7 +45,7 @@ int main() {
     next_link->next = first_link;
 
     /* Count the number of nodes in a circular linked-list. */
-    first_link = current_link;
+    first_link    = current_link;
     int num_nodes = 0;
     do {
         current_link = current_link->next;
