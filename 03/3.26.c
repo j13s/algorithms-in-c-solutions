@@ -29,17 +29,17 @@
 
 int main(void) {
     const int num_nodes = 100;
-    link x      = make_nodes(num_nodes),
-         t      = make_nodes(num_nodes),
+    link x      = circ_make_nodes(num_nodes),
+         t      = circ_make_nodes(num_nodes),
          x2     = x->next,
+         x_last = x,
          t_last = t;
     int  num    = 0;
     
     x->item.num = num++;
     link l = x2;
-    for (num = num_nodes + 1; num < num_nodes * 2; num++) {
+    for (num = num_nodes + 1; l != x; l = l->next, num++) {
         l->item.num = num;
-        l = l->next;
     }
     l = t;
     for (num = 1; num < (num_nodes + 1); num++) {
@@ -48,10 +48,14 @@ int main(void) {
     }
     
     
-    /* Get the last node in the list for t. */
-    while (t_last->next != NULL) {
+    /* Get the last nodes in the circular lists. */
+    while (t_last->next != t) {
         t_last = t_last->next;
     }
+    while (x_last->next != x) {
+        x_last = x_last->next;
+    }
+    
     
     /* This is the solution for 3.26. */
     x->next = t;
@@ -74,6 +78,12 @@ int main(void) {
         l = l->next;
     }
     
-    free_nodes(x);
+    if (l != x) {
+        printf("The merged list is not circular.\n");
+        
+        exit(2);
+    }
+    
+    circ_free_nodes(x);
     return (0);
 }
