@@ -19,9 +19,15 @@
 
 link
 create_node() {
-    return (link)malloc(sizeof(struct node));
+    link x = (link)malloc(sizeof(struct node));
+    
+    x->next = NULL;
+    
+    return x;
 }
 
+/* Inserts a node into a linked-list.  Returns a pointer to the node after the
+   inserted node. */
 link
 insert_after(link beginning, link end) {
     link middle = beginning->next;
@@ -59,4 +65,28 @@ circ_free_nodes(link first_link) {
         free(current_link);
         current_link = next_link;
     } while (current_link != first_link);
+}
+
+link
+make_nodes(int num_links) {
+    link x = create_node(),
+         first_link = x;
+    
+    for (int i = 1; i < num_links; i++) {
+        x = insert_after(x, create_node());
+    }
+    
+    return first_link;
+}
+
+void
+free_nodes(link first) {
+    link x = first,
+         t;
+         
+     do {
+         t = x->next;
+         free(x);
+         x = t;
+     } while (t != NULL);
 }

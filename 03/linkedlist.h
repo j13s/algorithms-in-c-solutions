@@ -31,7 +31,11 @@ struct node {
 
 link create_node();
 link insert_after(link, link);
+link make_nodes(int);
+
 link circ_make_nodes(int);
 void circ_free_nodes(link);
 
+link make_nodes(int);
+void free_nodes(link);
 #endif  /* LINKEDLIST_H */
