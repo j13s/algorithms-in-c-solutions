@@ -22,7 +22,6 @@
  * a pointer to one of the nodes on the list.
  */
 
-#include <stdlib.h>
 #include <stdio.h>
 #include "linkedlist.h"
 
