@@ -36,8 +36,7 @@ link
 circ_make_nodes(int num_links) {
     /* Initialize the circular linked-list. */    
     link first_link   = create_node();
-    link current_link = first_link,
-         next_link;
+    link current_link = first_link;
     
     /* One node has already been allocated, so start at 1. */
     for (int i = 1; i < num_links; i++) {
